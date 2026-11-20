@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An individual GEEN 1400 engineering case study: circuit design, embedded control, and iterative prototyping for a heated cat carrier.">
+  <meta name="theme-color" content="#173d35">
+  <title>Heated Cat Carrier — Individual Engineering Case Study</title>
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+  <a class="skip" href="#main">Skip to case study</a>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Ian Finlayson portfolio home"><span class="brand-mark" aria-hidden="true">∿</span> IAN FINLAYSON</a>
+    <nav aria-label="Case study navigation"><a href="index.html#work">All projects</a><a href="#problem">Problem</a><a href="#solution">Design</a><a href="#contributions">My contribution</a></nav>
+    <a class="header-tag" href="#overview">GEEN 1400 · TEAM APEX</a>
+  </header>
+  <main id="main">
+    <section class="hero wrap" id="overview" aria-labelledby="project-title">
+      <div class="hero-copy"><p class="eyebrow">EMBEDDED SYSTEMS / HUMAN-CENTERED DESIGN</p>
+        <h1 id="project-title">Heated<br>Cat Carrier<span class="accent">.</span></h1>
+        <p class="case-label">Individual Engineering Case Study</p>
+        <p class="tagline">A warm, sunny spot<br>for every vet trip.</p>
+        <p class="hero-description">I led the circuit build and wrote the microcontroller code for a temperature-controlled carrier concept, bringing together resistive heating, embedded control, and Bluetooth connectivity.</p>
+        <a class="button" href="#solution">Explore the design</a>
+      </div>
+      <figure class="hero-figure">
+        <div class="carrier-placeholder image-slot" role="img" aria-label="Heated cat carrier concept illustration">
+          <div class="visual-top"><span>HEATED CARRIER / V2</span><span>DESIGN CONCEPT</span></div>
+          <svg class="carrier-sketch" viewBox="0 0 600 390" fill="none" aria-hidden="true">
+            <path d="M107 134L204 84H423L500 130V293L405 343H107V134Z" fill="#e6ece8" stroke="#487264" stroke-width="2"/>
+            <path d="M107 134H405L500 130M405 134V343M204 84L200 130" stroke="#487264" stroke-width="2"/>
+            <path d="M253 101V73Q253 51 275 51H333Q355 51 355 73V101" stroke="#487264" stroke-width="9"/>
+            <rect x="136" y="159" width="239" height="156" rx="55" fill="#c8d7cf" stroke="#487264" stroke-width="2"/>
+            <path d="M160 175V300M191 164V311M223 160V314M255 160V314M287 160V314M319 164V310M350 175V300M140 200H370M136 232H375M139 264H371M153 296H358" stroke="#769386" stroke-width="2"/>
+            <path d="M426 165L477 149M426 191L477 175M426 217L477 201" stroke="#769386" stroke-width="5" stroke-linecap="round"/>
+            <path d="M146 308H364" stroke="#d77942" stroke-width="9" stroke-linecap="round"/>
+            <path d="M216 284C199 266 232 254 216 237M253 284C236 266 269 254 253 237M290 284C273 266 306 254 290 237" stroke="#c36532" stroke-width="3" stroke-linecap="round"/>
+            <path d="M371 310H530V274" stroke="#b06b44" stroke-dasharray="4 5"/><circle cx="371" cy="310" r="5" fill="#b06b44"/>
+            <text x="453" y="260" fill="#704e39" font-size="13" font-family="sans-serif">HEATING PAD</text>
+          </svg>
+          <div class="placeholder-note"><span class="small-plus">+</span><div><strong>V2 carrier concept</strong><span>Temperature-controlled heating pad</span></div></div>
+        </div>
+        <figcaption>V2 concept illustration with an integrated heating pad.</figcaption>
+      </figure>
+    </section>
+    <section class="metadata wrap" aria-label="Project at a glance">
+      <div><p class="eyebrow">MY ROLE</p><p>Circuit build lead<br><span>Microcontroller programming</span></p></div>
+      <div><p class="eyebrow">HARDWARE / SOFTWARE</p><p>ESP-32D · Arduino<br><span>Bluetooth app · LCD · temperature sensor</span></p></div>
+      <div><p class="eyebrow">THERMAL TARGETS</p><p>90–110°F <span>target range</span><br><span>120°F max shut-off · ±2°F consistency</span></p></div>
+      <div><p class="eyebrow">PORTABILITY TARGET</p><p>&lt;7 lb<br><span>Carrier + heating system</span></p></div>
+    </section>
+    <p class="target-note wrap">Specifications above are design targets. Measured weight: 7 lb. Two heating trials are documented below; these do not establish animal-use safety.</p>
+    <section class="section wrap problem" id="problem" aria-labelledby="problem-title">
+      <div class="section-heading"><p class="eyebrow">THE STARTING POINT</p><h2 id="problem-title">1. Problem Statement</h2></div>
+      <div class="problem-grid"><h3>Getting there shouldn’t<br>be the hardest part.</h3><div><p>Getting a cat into a carrier can turn a routine vet visit into a stressful experience for both the cat and its owner. An unfamiliar, uncomfortable carrier makes the trip harder before it even begins.</p><p>Our inspiration was a grumpy cat with a clear preference: warm, sunny spots. For GEEN 1400, my team, APEX, explored how to bring that sense of warmth into a portable carrier while managing the risk of overheating.</p><p class="stakeholders"><strong>Who I designed for</strong><br>Cat owners preparing for trips, and the cats riding with them.</p></div></div>
+      <aside class="design-question"><span aria-hidden="true">☀</span><p>How might we make a carrier feel like a welcoming warm spot, while keeping temperature control simple for its owner?</p></aside>
+    </section>
+    <section class="solution-section" id="solution" aria-labelledby="solution-title"><div class="wrap section">
+      <div class="section-heading"><p class="eyebrow">FROM SENSOR TO SYSTEM</p><h2 id="solution-title">2. Description of Design Solution</h2><p>The final iteration paired a heated pad with embedded temperature control and a Bluetooth interface.</p></div>
+      <div class="system-intro"><div><h3>Two power circuits.<br>One coordinated system.</h3><p>In V2, an ESP-32D controls the heating pad and pairs with a Bluetooth app. The owner can toggle the heater, adjust the setpoint, and read the temperature in a user-friendly interface alongside the local LCD readout. App control replaces the earlier potentiometer dial.</p></div><aside class="control-note"><p class="eyebrow">CONTROL INTENT</p><p>Monitor temperature, switch heat as needed, and prioritize the 120°F maximum shut-off requirement.</p><span>Cut-off behavior still needs documented validation.</span></aside></div>
+      <div class="architecture" aria-label="Dual-circuit architecture">
+        <article class="power-card"><span class="voltage">12<span>V</span></span><div><p class="eyebrow">HEATING CIRCUIT</p><h4>Power for the pad</h4><p>The ESP-32D controls a transistor switch to turn the separate 12V heating-pad circuit on and off.</p></div></article>
+        <article class="power-card"><span class="voltage">5<span>V</span></span><div><p class="eyebrow">CONTROL CIRCUIT</p><h4>Monitoring + interface</h4><p>The 5V supply circuit powers the control electronics: LCD, temperature sensor, and ESP-32D through its appropriate board input/regulation.</p></div></article>
+      </div>
+      <div class="evolution-heading"><h3>Three iterations. A clearer solution.</h3><p>Each prototype added a focused layer of functionality.</p></div>
+      <div class="iterations">
+        <article><span class="version">V0</span><h4>Read & display</h4><p>An Arduino UNO read the temperature sensor and displayed its output on an LCD, establishing the basic sensing and display path.</p><span class="iteration-detail">Arduino UNO · sensor · LCD</span></article>
+        <article><span class="version">V1</span><h4>Add heat control</h4><p>An Arduino Nano controlled the separately powered heating pad. An LCD backpack simplified the display wiring, and a potentiometer adjusted the temperature for heater cycling.</p><span class="iteration-detail">Arduino Nano · switch · physical dial</span></article>
+        <article class="final-iteration"><span class="version">V2 <small>FINAL ITERATION</small></span><h4>Make control wireless</h4><p>I moved the embedded control to an ESP-32D. A Bluetooth app replaced the dial while the dual 12V/5V setup supported heating, monitoring, and the LCD.</p><span class="iteration-detail">ESP-32D · Bluetooth · dual supply</span></article>
+      </div>
+      <section class="test-results" aria-labelledby="testing-title">
+        <p class="eyebrow">BENCH TEST NOTES</p><h3 id="testing-title">Two trials to 105°F.</h3>
+        <p>I recorded the starting temperature, time to reach 105°F, and the peak temperature reached before cooling in each heating trial.</p>
+        <div class="table-scroll"><table><caption>Recorded heating trials</caption><thead><tr><th scope="col">Trial</th><th scope="col">Start</th><th scope="col">End</th><th scope="col">Time to end</th><th scope="col">Peak before cooling</th></tr></thead><tbody><tr><th scope="row">1</th><td>67.8°F</td><td>105°F</td><td>10 min</td><td>107°F</td></tr><tr><th scope="row">2</th><td>76.2°F</td><td>105°F</td><td>8 min 54 sec</td><td>106.8°F</td></tr></tbody></table></div>
+        <p class="test-interpretation"><strong>What the results show:</strong> Both trials reached 105°F. The trial with the warmer starting temperature reached that point 1 min 6 sec sooner. At a measured 7 lb, the prototype reached the 7 lb threshold but did not meet the strict &lt;7 lb portability target.</p>
+        <p class="test-limit">The peak readings were 2°F and 1.8°F above the recorded 105°F endpoint. These readings alone do not verify ±2°F consistency or the 120°F safety shut-off. My notes do not include sensor placement, ambient conditions, or a full temperature trace.</p>
+      </section>
+      <div class="evidence-grid">
+        <figure class="circuit-figure"><a class="image-link" href="assets/early-circuit.png" target="_blank" rel="noopener" aria-label="Open full early Arduino circuit reference"><img src="assets/early-circuit.png" alt="Early Arduino UNO circuit reference showing a breadboard, sensor, potentiometer, transistor, and LCD" loading="lazy" width="1698" height="933"></a><figcaption><strong>Early circuit reference</strong>Arduino UNO wiring study; this is not the final ESP-32D circuit.</figcaption></figure>
+        <figure class="app-figure"><div class="app-surface"><a class="image-link" href="assets/heatpad-app.png" target="_blank" rel="noopener" aria-label="Open full companion app screenshot"><img src="assets/heatpad-app.png" alt="Companion HeatPad app showing an 80 degree setpoint, no Bluetooth connection, and heater off" loading="lazy" width="550" height="834"></a></div><figcaption><strong>Companion Bluetooth app</strong>Teammate-developed interface, shown disconnected. The displayed 80°F is a UI state, not a validated operating result.</figcaption></figure></div>
+    </div></section>
+    <section class="section wrap build-section" id="physical-build" aria-labelledby="build-title">
+      <div class="section-heading"><p class="eyebrow">FROM BENCH TO CARRIER</p><h2 id="build-title">The physical build</h2><p>These project photos show the carrier assembly, control enclosure, and circuit development. The illustration above remains a design concept; the photos below document the prototype.</p></div>
+      <div class="featured-build"><figure class="build-photo carrier-build"><a class="image-link" href="assets/page-1-image-7.jpg" target="_blank" rel="noopener" aria-label="Open full photo: Assembled carrier prototype"><img src="assets/page-1-image-7.jpg" alt="Gray cat carrier on a workbench with an external electronics box, lit LCD, and power cable" width="1536" height="2048" loading="lazy" decoding="async"></a><figcaption><strong>Assembled carrier prototype</strong>The physical build, with the external control box and LCD mounted beside the carrier door.</figcaption></figure><figure class="build-photo "><a class="image-link" href="assets/page-1-image-6.jpg" target="_blank" rel="noopener" aria-label="Open full photo: Local temperature readout"><img src="assets/page-1-image-6.jpg" alt="Close view of the lit LCD on a black control box mounted to the side of the carrier" width="1536" height="2048" loading="lazy" decoding="async"></a><figcaption><strong>Local temperature readout</strong>The LCD provides a local interface alongside the companion Bluetooth app.</figcaption></figure><figure class="build-photo "><a class="image-link" href="assets/page-2-image-1.jpg" target="_blank" rel="noopener" aria-label="Open full photo: Inside the electronics box"><img src="assets/page-2-image-1.jpg" alt="Open black electronics enclosure attached to the carrier, showing a breadboard, controller, and wiring" width="1536" height="2048" loading="lazy" decoding="async"></a><figcaption><strong>Inside the electronics box</strong>An open-enclosure view of the controller wiring and display connections.</figcaption></figure></div>
+      <details class="build-gallery"><summary>Explore the build process <span>11 more project photos</span></summary><div class="process-photos"><figure class="build-photo "><a class="image-link" href="assets/page-1-image-1.jpg" target="_blank" rel="noopener" aria-label="Open full photo: Circuit assembly"><img src="assets/page-1-image-1.jpg" alt="Wired circuit board and LCD lying on a red heating pad" width="1536" height="2048" loading="lazy" decoding="async"></a><figcaption><strong>Circuit assembly</strong>Wiring and display connections during circuit development.</figcaption></figure>
+<figure class="build-photo "><a class="image-link" href="assets/page-1-image-2.jpg" target="_blank" rel="noopener" aria-label="Open full photo: ESP-32D controller detail"><img src="assets/page-1-image-2.jpg" alt="ESP-32D development board on a green prototyping board with red black and yellow wires" width="1536" height="2048" loading="lazy" decoding="async"></a><figcaption><strong>ESP-32D controller detail</strong>A close look at the ESP-32D circuit board and wired connections.</figcaption></figure>
+<figure class="build-photo "><a class="image-link" href="assets/page-1-image-3.jpg" target="_blank" rel="noopener" aria-label="Open full photo: Display integration on the bench"><img src="assets/page-1-image-3.jpg" alt="Lit LCD and microcontroller breadboard beside a red heating pad" width="1536" height="2048" loading="lazy" decoding="async"></a><figcaption><strong>Display integration on the bench</strong>Controller and LCD connected during development.</figcaption></figure>
+<figure class="build-photo "><a class="image-link" href="assets/page-1-image-4.jpg" target="_blank" rel="noopener" aria-label="Open full photo: Wired control prototype"><img src="assets/page-1-image-4.jpg" alt="Breadboard controller connected to an LCD above a red heating pad" width="1536" height="2048" loading="lazy" decoding="async"></a><figcaption><strong>Wired control prototype</strong>Bench wiring before enclosure integration.</figcaption></figure>
+<figure class="build-photo "><a class="image-link" href="assets/page-1-image-5.jpg" target="_blank" rel="noopener" aria-label="Open full photo: Carrier and control-box assembly"><img src="assets/page-1-image-5.jpg" alt="Gray carrier with black door, coiled cable, and mounted LCD control box" width="1536" height="2048" loading="lazy" decoding="async"></a><figcaption><strong>Carrier and control-box assembly</strong>Another view of the physical carrier and externally mounted electronics.</figcaption></figure>
+<figure class="build-photo "><a class="image-link" href="assets/page-2-image-2.jpg" target="_blank" rel="noopener" aria-label="Open full photo: Component-level prototyping"><img src="assets/page-2-image-2.jpg" alt="Controller breadboard, separate component breadboard, and lit LCD on a cutting mat" width="1536" height="2048" loading="lazy" decoding="async"></a><figcaption><strong>Component-level prototyping</strong>A breadboard setup used while developing the circuit.</figcaption></figure>
+<figure class="build-photo "><a class="image-link" href="assets/page-2-image-3.jpg" target="_blank" rel="noopener" aria-label="Open full photo: LCD wiring detail"><img src="assets/page-2-image-3.jpg" alt="Lit LCD with jumper wires running to breadboards on a work mat" width="1536" height="2048" loading="lazy" decoding="async"></a><figcaption><strong>LCD wiring detail</strong>A closer view of the display and breadboard connections.</figcaption></figure>
+<figure class="build-photo "><a class="image-link" href="assets/page-2-image-4.jpg" target="_blank" rel="noopener" aria-label="Open full photo: Separate component breadboards"><img src="assets/page-2-image-4.jpg" alt="Two breadboards connected by jumper wires with controller and switching components" width="1536" height="2048" loading="lazy" decoding="async"></a><figcaption><strong>Separate component breadboards</strong>Breaking the circuit into smaller pieces made connections easier to inspect.</figcaption></figure>
+<figure class="build-photo "><a class="image-link" href="assets/page-2-image-5.jpg" target="_blank" rel="noopener" aria-label="Open full photo: Arduino bench setup"><img src="assets/page-2-image-5.jpg" alt="Arduino development setup with breadboards and a blue LCD display" width="1536" height="2048" loading="lazy" decoding="async"></a><figcaption><strong>Arduino bench setup</strong>An earlier Arduino-based circuit with a local temperature display.</figcaption></figure>
+<figure class="build-photo "><a class="image-link" href="assets/page-2-image-6.jpg" target="_blank" rel="noopener" aria-label="Open full photo: Earlier control and display build"><img src="assets/page-2-image-6.jpg" alt="Arduino circuit wired to a separate breadboard and an LCD on a black cutting mat" width="1536" height="2048" loading="lazy" decoding="async"></a><figcaption><strong>Earlier control and display build</strong>Another view of the Arduino circuit during development.</figcaption></figure>
+<figure class="build-photo "><a class="image-link" href="assets/page-2-image-7.jpg" target="_blank" rel="noopener" aria-label="Open full photo: Arduino UNO starting point"><img src="assets/page-2-image-7.jpg" alt="Arduino UNO mounted on a black base between two small breadboards" width="1536" height="2048" loading="lazy" decoding="async"></a><figcaption><strong>Arduino UNO starting point</strong>The early platform for developing sensing and circuit connections.</figcaption></figure></div></details>
+    </section>
+    <section class="section wrap" id="contributions" aria-labelledby="contributions-title">
+      <div class="section-heading"><p class="eyebrow">MY OWNERSHIP & DEVELOPMENT</p><h2 id="contributions-title">3. Individual Contributions & Growth</h2></div>
+      <div class="ownership-grid"><div><h3>I built the circuit.<br>I wrote the firmware.</h3><p>I led the circuit build and completed almost all of the wiring and assembly myself across the iterations. I sought targeted help from TAs on the transistor switch used to turn the heat on and off.</p><p>I developed the microcontroller code myself. A teammate developed the companion app using AI-assisted coding; my contribution centered on the embedded controller and physical circuit.</p></div><div class="practice"><p class="eyebrow">HOW I APPROACHED THE WORK</p><article><h4>Prototype in manageable steps</h4><p>I built up from temperature sensing and display to heater switching, then wireless control.</p></article><article><h4>Isolate before integrating</h4><p>I tested components individually to separate sensor, display, and switching issues before debugging the complete system.</p></article><article><h4>Connect code to physical behavior</h4><p>I kept heat transfer and resistive heating, <span class="formula">P = I²R</span>, in mind when considering the pad’s power demand and the carrier’s thermal response.</p></article></div></div>
+      <div class="learning"><h3>What I Learned & How I Grew</h3><div class="learning-grid"><article><h4>Embedded control</h4><p>Moving from Arduino to ESP-32D grew my confidence in adapting microcontroller code as the interface and system requirements changed.</p></article><article><h4>Electrical integration</h4><p>Working with two supply voltages and a transistor switch taught me to track power paths, board requirements, and control connections deliberately.</p></article><article><h4>Systematic debugging</h4><p>Component-level checks made problems easier to locate. Asking TAs a focused question helped me move through the switching challenge.</p></article><article><h4>Engineering judgment</h4><p>A working interface is only part of a working product. Clear ownership, careful wiring, and measured thermal performance all matter.</p></article></div></div>
+      <aside class="next-step"><p class="eyebrow">WHAT I WOULD VALIDATE NEXT</p><p>Build on the two heating trials with a full temperature trace and measurements across the pad, test the shut-off and sensor-failure response, and reduce weight below the measured 7 lb before considering use with an animal.</p></aside>
+    </section>
+
+  </main>
+  <footer class="wrap"><div><p>Heated Cat Carrier <span> / </span> Engineering Portfolio</p><p class="generation-credit">Generated with ChatGPT (GPT-6) · November 18, 2026</p></div><a href="#overview">Back to top</a></footer>
+</body>
+</html>
